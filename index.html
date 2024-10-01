@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Invitación Baby Shower</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Kaushan+Script&display=swap">
+    <style>
+        body {
+            font-family: 'Dancing Script', Arial, sans-serif;
+            text-align: center;
+            background-color: #ffffff;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 500px;
+            margin: auto;
+            padding: 20px;
+            border-radius: 10px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .dinosaur-img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 0px;
+        }
+        .countdown {
+            font-size: 20px;
+            margin: 10px 0;
+            font-family:'Montserrat',sans-serif;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            color: #fff;
+        }
+        .countdown span {
+            background-color: #e1be9c;
+            color: white;
+            padding: 20px;
+            margin: 5px;
+            border-radius: 5px;
+            display: inline-block;
+            transition: background-color 0.3s, transform 0.3s;
+            font-size: 32px;
+        }
+        .countdown span:hover {
+            background-color: #e1be9c;
+            transform: scale(1.1);
+        }
+        .button {
+            background-color: #e1be9c;
+            color: white;
+            padding: 15px 30px;
+            text-decoration: none;
+            border-radius: 5px;
+            display: inline-block;
+            margin: 10px 5px;
+            font-size: 18px;
+            font-family:'Montserrat',sans-serif;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+        .button:hover {
+            background-color: #e1be9c;
+            transform: scale(1.1);
+        }
+        #music-control {
+            background-color: #e1be9c;
+            color: white;
+            padding: 15px 30px;
+            text-decoration: none;
+            border-radius: 5px;
+            display: inline-block;
+            margin: 10px 5px;
+            cursor: pointer;
+            font-size: 18px;
+            font-family: 'Montserrat', sans-serif;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+        #music-control:hover {
+            background-color: #e1be9c;
+            transform: scale(1.1);
+        }
+        @media (max-width: 600px) {
+            .container {
+                padding: 10px;
+            }
+            .button, #music-control {
+                font-size: 12px;
+                padding: 8px 15px;
+            }
+            .countdown {
+                font-size: 16px;
+            }
+            .countdown span {
+                padding: 5px;
+            }
+        }
+        @media (max-width: 400px) {
+            .button, #music-control {
+                font-size: 10px;
+                padding: 5px 10px;
+            }
+            .countdown {
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <img src="Invitacion.jpg" alt="Invitación" class="dinosaur-img">
+        <div id="countdown" class="countdown">
+            <span id="days">0 d</span>
+            <span id="hours">0 h</span>
+            <span id="minutes">0 m</span>
+            <span id="seconds">0 s</span>
+        </div>
+        <a href="https://maps.app.goo.gl/" class="button">Ver Ubicación</a>
+        <a href="https://wa.link/" class="button">Confirmar Asistencia</a>
+        <button id="music-control" onclick="toggleMusic()">Reproducir Música</button>
+    </div>
+    <audio id="bg-music" src="Camilo, Evaluna Montaner - Índigo.mp3" autoplay loop></audio>
+    <script>
+        const eventDate = new Date("Oct 10, 2024 19:00:00").getTime();
+        const countdownFunction = setInterval(() => {
+            const now = new Date().getTime();
+            const distance = eventDate - now;
+            if (distance < 0) {
+                clearInterval(countdownFunction);
+                document.getElementById("countdown").innerHTML = "¡El evento ha comenzado!";
+                return;
+            }
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+            document.getElementById("days").textContent = days + " d";
+            document.getElementById("hours").textContent = hours + " h";
+            document.getElementById("minutes").textContent = minutes + " m";
+            document.getElementById("seconds").textContent = seconds + " s";
+        }, 1000);
+        function toggleMusic() {
+            const music = document.getElementById('bg-music');
+            const musicControlButton = document.getElementById('music-control');
+            if (music.paused) {
+                music.play();
+                musicControlButton.textContent = 'Pausar Música';
+            } else {
+                music.pause();
+                musicControlButton.textContent = 'Reproducir Música';
+            }
+        }
+    </script>
+</body>
+</html>
+
+
+
